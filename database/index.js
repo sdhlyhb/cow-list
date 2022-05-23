@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'student',
-  password: 'student',
-  database: 'YOUR_DATABASE_NAME_HERE'
+  user: 'root',
+  password: '',
+  database: 'cows'
 });
 
 connection.connect((err) => {
@@ -23,5 +23,6 @@ connection.connect((err) => {
 
 // Don't forget to export your functions!
 module.exports = {
+  connection: connection
 
 };

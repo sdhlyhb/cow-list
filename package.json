@@ -1,13 +1,15 @@
 {
   "name": "fullstack-reps-cowlist",
   "version": "1.0.0",
-  "description": "",
+  "description": "Forked from: [https://trk.re/cowlist](https://trk.re/cowlist)",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server",
     "build": "webpack",
     "watch": "webpack -w",
+    "react-dev": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "keywords": [],
   "author": "Hack Reactor <curriculum.team@hackreactor.com>",
@@ -28,5 +30,13 @@
     "nodemon": "^2.0.4",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdhlyhb/hr-rpp36-cow-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sdhlyhb/hr-rpp36-cow-list/issues"
+  },
+  "homepage": "https://github.com/sdhlyhb/hr-rpp36-cow-list#readme"
 }
