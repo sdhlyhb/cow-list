@@ -3,7 +3,7 @@ const path = require('path');
 
 const PORT = 3000;
 const app = express();
-const {db, getAllCows} = require('../database/index.js');
+const { getAllCows, addOneCow} = require('../database/index.js');
 
 
 
@@ -28,20 +28,19 @@ app.get('/api/cows', (req, res) => {
 
 
 app.post('/api/cows', (req, res) => {
-  console.log(req.body);
+  console.log('this is req.body:', req.body, typeof(req.body));
   var cowData = req.body;
-  let queryString = `INSERT INTO cowList (name, description) VALUES (?, ?)`;
-  let queryArgs = [cowData.name, cowData.description];
-  db.query(queryString, queryArgs, (err, results) => {
+  addOneCow(cowData, (err, result) => {
     if(err) {
-      console.log('ERROR adding one cow info to the database!');
-      res.send(err);
+      console.log('Err POST new cow data!', err);
     } else {
-      console.log('SUCCESS adding one cow info to the database!');
-      res.send(results);
+      res.send(cowData);
     }
 
   });
+
+
+
 
 
 

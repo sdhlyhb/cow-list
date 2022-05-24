@@ -17,7 +17,7 @@ connection.connect((err) => {
 
 // Your Database Queries Here!!
 
-const getAllCows = ((callback) => {
+const getAllCows = (callback) => {
   let queryString = 'SELECT * FROM cowList';
   connection.query(queryString, (err, results) => {
     if(err) {
@@ -30,25 +30,25 @@ const getAllCows = ((callback) => {
 
   });
 
-});
+};
 
 
 
-// const addOneCow = (cowData, callback) => {
-//   let queryString = `INSERT INTO cowList (name, description) VALUES (?, ?)`;
-//   let queryArgs = [cowData.name, cowData.description];
-//   connection.query(queryString, queryArgs, (err, results) => {
-//     if(err) {
-//       console.log('ERROR adding one cow info to the database!');
-//       //callback(err, null);
-//     } else {
-//       console.log('SUCCESS adding one cow info to the database!');
-//       callback(null, results);
-//     }
+const addOneCow = (cowData, callback) => {
+  let queryString = `INSERT INTO cowList (name, description) VALUES (?, ?)`;
+  let queryArgs = [cowData.name, cowData.description];
+  connection.query(queryString, queryArgs, (err, results) => {
+    if(err) {
+      console.log('ERROR adding one cow info to the database!');
+      //callback(err, null);
+    } else {
+      console.log('SUCCESS adding one cow info to the database!');
+      callback(null, results);
+    }
 
-//   });
+  });
 
-// }
+};
 
 
 
@@ -56,8 +56,9 @@ const getAllCows = ((callback) => {
 
 // Don't forget to export your functions!
 module.exports = {
-  getAllCows
-  // addOneCow
+  // connection,
+  getAllCows,
+  addOneCow
 
 
 };
