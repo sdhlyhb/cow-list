@@ -1,0 +1,8 @@
+#add-cow-form label {
+  display: block;
+  margin: 10px 0 0;
+}
+
+.cow-des-span {
+  visibility: hidden;
+}

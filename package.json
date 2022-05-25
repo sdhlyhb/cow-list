@@ -9,7 +9,6 @@
     "watch": "webpack -w",
     "react-dev": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
   "keywords": [],
   "author": "Hack Reactor <curriculum.team@hackreactor.com>",
