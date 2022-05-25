@@ -7,6 +7,7 @@ const ClickedCow = (props) => {
       <span className="close-icon" onClick = {e => {props.toggle(e)}}>X</span>
       <span>NAME: {props.currentCow.name}</span>
       <br></br>
+      <br></br>
       <span>DESCRIPTION: {props.currentCow.description}</span>
 
     </div>
