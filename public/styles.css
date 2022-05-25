@@ -6,3 +6,38 @@
 .cow-des-span {
   visibility: hidden;
 }
+
+.clicked-cow {
+  position: fixed;
+  z-index: 1;
+  width: 45%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: 5%;
+  background: lightcyan;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  left: 45%;
+  top: 20%;
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+.close-icon:hover {
+  color: red;
+  cursor: pointer;
+}

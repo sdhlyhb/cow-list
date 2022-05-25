@@ -10,7 +10,7 @@ const CowList = (props) => {
       <div className='cowList'>
         <h3>This is the cow list</h3>
 
-    {props.cows.map(cow => <CowItem key = {cow.id} cow = {cow} clickPop = {props.toggle} />)}
+    {props.cows.map(cow => <CowItem key = {cow.id} cow = {cow} clickPop = {props.clickAndToggle} />)}
 
 
 

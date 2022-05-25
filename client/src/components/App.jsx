@@ -53,6 +53,13 @@ class App extends React.Component {
     )
   };
 
+  clickCowName(clickedName) {
+    let matched = this.state.allCows.filter(ele => ele.name === clickedName);
+    this.setState({
+      currentClickedCowData: {name: matched[0].name, description: matched[0].description},
+      popUpSeen: !this.state.popUpSeen
+    })
+  };
 
 
 
@@ -67,11 +74,11 @@ class App extends React.Component {
       <div>
         <h1>Welcome to the COW LIST</h1>
 
-     {this.state.popUpSeen? <ClickedCow toggle = {this.togglePop.bind(this)}/> : null}
+     {this.state.popUpSeen? <ClickedCow toggle = {this.togglePop.bind(this)} currentCow = {this.state.currentClickedCowData}/> : null}
 
       <AddCow handleAddition = {this.addNew.bind(this)}/>
 
-      <CowList cows = {this.state.allCows} toggle = {this.togglePop.bind(this)}/>
+      <CowList cows = {this.state.allCows} clickAndToggle = {this.clickCowName.bind(this)}/>
 
       </div>
 

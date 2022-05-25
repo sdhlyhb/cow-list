@@ -5,8 +5,9 @@ const ClickedCow = (props) => {
     <div className="clicked-cow">
       <h2>This is the selected cow:</h2>
       <span className="close-icon" onClick = {e => {props.toggle(e)}}>X</span>
-      <span>Name: {props.name}</span>
-      <span>Description: {props.description}</span>
+      <span>NAME: {props.currentCow.name}</span>
+      <br></br>
+      <span>DESCRIPTION: {props.currentCow.description}</span>
 
     </div>
   );
