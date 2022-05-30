@@ -79,7 +79,7 @@ const updateOneCow = (newDes, newName, id, callback) => {
 }
 
 const deleteOneCow = (id, callback) => {
-  let queryString = `DELETE FROM cowList WHERE id = ${id}`;
+  let queryString = `DELETE FROM cowList WHERE id =" ${id}"`;
   connection.query(queryString, (err, result) => {
     if(err) {
       console.log('Err deleting info in the database!', err);

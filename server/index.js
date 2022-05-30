@@ -62,7 +62,8 @@ app.patch(`/api/cows/:id`, (req, res) => {
 });
 
 app.delete(`/api/cows/:id`, (req, res)=> {
-  var id = req.body.id;
+  console.log('this is req.params in DELETE:', req.params);
+  var id = Number(req.params.id[1]);
   deleteOneCow(id, (err, result) => {
     if(err) {
       console.log('Err delete the cow data!', err);

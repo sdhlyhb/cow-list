@@ -65,18 +65,26 @@ class App extends React.Component {
   };
 
   updateCow(id, newName, newDes) { //id will always be the same only name and decription will be updated;
+
     let updatedData = {id: id, name: newName, decription: newDes};
-    axios.put(`api/cows/:${id}`, updatedData)
+    axios.put(`api/cows/:id`, updatedData)
       .then(res => {
         console.log('Sucess update info:', res.data);
       })
-      .then(() => getAll())
+      .then(() => this.getAll())
       .catch(err => console.log('Err updating!', err));
 
-
-
-
   };
+
+  deleteCow(id) {
+
+    axios.delete(`api/cows/:${id}`, {data: {id: id}})
+      .then(res => {
+        console.log('Sucess deleted the cow data!');
+      })
+      .then(()=> this.getAll())
+      .catch(err => console.log('Err deleting!', err));
+  }
 
 
 
@@ -95,7 +103,8 @@ class App extends React.Component {
 
       <AddCow handleAddition = {this.addNew.bind(this)}/>
 
-      <CowList cows = {this.state.allCows} clickAndToggle = {this.clickCowName.bind(this)}/>
+      <CowList cows = {this.state.allCows}  delete = {this.deleteCow.bind(this)}  clickAndToggle = {this.clickCowName.bind(this)}/>
+
 
       {this.state.updateWindowPop? <UpdateCow updateCow = {this.updateCow.bind(this)}
       /> : null}
