@@ -3,7 +3,7 @@ const path = require('path');
 
 const PORT = 3000;
 const app = express();
-const { getAllCows, addOneCow, getCowById, updateOneCow} = require('../database/index.js');
+const { getAllCows, addOneCow, getCowById, updateOneCow, deleteOneCow} = require('../database/index.js');
 
 
 
@@ -60,6 +60,19 @@ app.patch(`/api/cows/:id`, (req, res) => {
 
 
 });
+
+app.delete(`/api/cows/:id`, (req, res)=> {
+  var id = req.body.id;
+  deleteOneCow(id, (err, result) => {
+    if(err) {
+      console.log('Err delete the cow data!', err);
+    } else {
+      console.log('Sucess deleted the cow data!');
+      res.send(result);
+    }
+  })
+
+})
 
 
 
