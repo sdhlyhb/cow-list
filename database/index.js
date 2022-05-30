@@ -40,7 +40,7 @@ const addOneCow = (cowData, callback) => {
   connection.query(queryString, queryArgs, (err, results) => {
     if(err) {
       console.log('ERROR adding one cow info to the database!');
-      //callback(err, null);
+      callback(err, null);
     } else {
       console.log('SUCCESS adding one cow info to the database!');
       callback(null, results);
@@ -50,6 +50,34 @@ const addOneCow = (cowData, callback) => {
 
 };
 
+const getCowById = (id, callback) => {
+  let queryString = `SELECT name, description FROM cowList WHERE id = ${id}`;
+  connection.query(queryString, (err, result) => {
+    if(err) {
+      console.log('Err getting one cow by id from database!', err);
+      callback(err, null);
+
+    }else {
+      console.log('Sucess getting one cow by id from database!');
+      callback(null, result);
+    }
+  })
+}
+
+
+const updateOneCow = (newDes, newName, id, callback) => {
+  let queryString = `UPDATE cowList SET description = "${newDes}", name = "${newName}" WHERE id = ${id}`;
+  connection.query(queryString, (err, results) => {
+    if(err) {
+      console.log('ERR updating info in the database!');
+      callback(err, null);
+    } else {
+      console.log('Sucess updating info!')
+      callback(null, results);
+    }
+  });
+}
+
 
 
 
@@ -58,7 +86,9 @@ const addOneCow = (cowData, callback) => {
 module.exports = {
   // connection,
   getAllCows,
-  addOneCow
+  addOneCow,
+  getCowById,
+  updateOneCow
 
 
 };

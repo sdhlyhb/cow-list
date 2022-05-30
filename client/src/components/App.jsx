@@ -2,6 +2,7 @@ import React, {component} from 'react';
 import AddCow from './AddCow.jsx';
 import CowList from './CowList.jsx';
 import ClickedCow from './ClickedCow.jsx';
+import UpdateCow from './UpdateCow.jsx';
 import axios from 'axios';
 
 
@@ -11,7 +12,9 @@ class App extends React.Component {
     this.state = {
       allCows : [],
       currentClickedCowData: null,
-      popUpSeen: false
+      updatedCow: null,
+      popUpSeen: false,
+      updateWindowPop: true
 
     }
   }
@@ -42,7 +45,7 @@ class App extends React.Component {
       console.log('Success adding a new cow!');
       console.log('this is the res.data:', res.data);
     })
-    .then(this.getAll())
+    .then(() => this.getAll())
     .catch(err=> console.log('ERR! Can not add a new cow! '))
 
   };
@@ -56,9 +59,23 @@ class App extends React.Component {
   clickCowName(clickedName) {
     let matched = this.state.allCows.filter(ele => ele.name === clickedName);
     this.setState({
-      currentClickedCowData: {name: matched[0].name, description: matched[0].description},
+      currentClickedCowData: {id: matched[0].id, name: matched[0].name, description: matched[0].description},
       popUpSeen: !this.state.popUpSeen
     })
+  };
+
+  updateCow(id, newName, newDes) { //id will always be the same only name and decription will be updated;
+    let updatedData = {id: id, name: newName, decription: newDes};
+    axios.put(`api/cows/:${id}`, updatedData)
+      .then(res => {
+        console.log('Sucess update info:', res.data);
+      })
+      .then(() => getAll())
+      .catch(err => console.log('Err updating!', err));
+
+
+
+
   };
 
 
@@ -79,6 +96,9 @@ class App extends React.Component {
       <AddCow handleAddition = {this.addNew.bind(this)}/>
 
       <CowList cows = {this.state.allCows} clickAndToggle = {this.clickCowName.bind(this)}/>
+
+      {this.state.updateWindowPop? <UpdateCow updateCow = {this.updateCow.bind(this)}
+      /> : null}
 
       </div>
 

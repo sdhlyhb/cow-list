@@ -4,10 +4,15 @@ const CowItem = (props) => {
   var curCowName = props.cow.name;
   return(
     <li className='cowItem'>
+      <span>ID_{props.cow.id}</span>
+      {':   '}
 
         <span className="cow-name-span" onClick = {e => {props.clickPop(curCowName)}}>{props.cow.name} </span>
-        {":     "}
-        <span className ='cow-des-span'>{props.cow.description}</span>
+        <button>update</button>
+        <button>delete</button>
+
+        {/* {":     "}
+        <span className ='cow-des-span'>{props.cow.description}</span> */}
 
     </li>
 

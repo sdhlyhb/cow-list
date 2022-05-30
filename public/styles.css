@@ -1,3 +1,8 @@
+body {
+  background-color: #C1F4C5;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 #add-cow-form label {
   display: block;
   margin: 10px 0 0;
@@ -9,11 +14,22 @@ span {
 
 
 
-.cow-des-span {
-  visibility: hidden;
+.clicked-cow {
+  position: fixed;
+  z-index: 1;
+  width: 45%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: 5%;
+  background: lightcyan;
+  padding: 20px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  overflow: auto;
 }
 
-.clicked-cow {
+#update-cow-form {
   position: fixed;
   z-index: 1;
   width: 45%;
@@ -34,7 +50,7 @@ span {
   cursor: pointer;
   position: fixed;
   left: 45%;
-  top: 20%;
+  top: 25%;
   background: #ededed;
   width: 25px;
   height: 25px;
