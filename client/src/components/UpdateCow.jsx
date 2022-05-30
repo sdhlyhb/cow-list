@@ -6,7 +6,6 @@ import React from 'react';
    constructor(props) {
      super(props);
      this.state = {
-        id: 0,
        updatedName: '',
        updatedDescription: ''
 
@@ -15,16 +14,16 @@ import React from 'react';
 
 
    updateCowName(e) {
-     this.setState({updatedName: e.target.value});
+     this.setState({updatedName: e.currentTarget.value});
    }
 
    updateDescription(e) {
-     this.setState({updatedDescription: e.target.value});
+     this.setState({updatedDescription: e.currentTarget.value});
    }
 
    handleSubmit(e) {
      e.preventDefault();
-     this.props.updateCow(id = 1, this.state.updatedDescription, this.state.updatedDescription);
+     this.props.updateCow(Number(this.props.updatedCowId), this.state.updatedName, this.state.updatedDescription);
 
 
 
@@ -36,7 +35,7 @@ import React from 'react';
       <div >
         <h3>Update cow info</h3>
         <form id="update-cow-form">
-          <label>Current ID: {this.state.id}</label>
+          <label>Current ID: {this.props.updatedCowId}</label>
           <br></br>
           <label>
             Name:

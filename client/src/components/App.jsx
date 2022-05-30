@@ -12,9 +12,9 @@ class App extends React.Component {
     this.state = {
       allCows : [],
       currentClickedCowData: null,
-      updatedCow: null,
+      updatedCowId: null,
       popUpSeen: false,
-      updateWindowPop: true
+      updateWindowPop: false
 
     }
   }
@@ -29,24 +29,24 @@ class App extends React.Component {
 
   getAll() {
     axios.get('api/cows')
-    .then(res => {
-      let allCowsData = res.data;
-      console.log('this is allCowsData:', res.data); // an array of objects
-      this.setState({allCows: allCowsData});
-    })
-    .catch(err => console.log('ERR! Can not get all the cows data!'));
+      .then(res => {
+        let allCowsData = res.data;
+        console.log('this is allCowsData:', res.data); // an array of objects
+        this.setState({ allCows: allCowsData });
+      })
+      .catch(err => console.log('ERR! Can not get all the cows data!'));
 
   };
 
   addNew(cowName, cowDescription) {
     let cowData = {name: cowName, description: cowDescription};
     axios.post('/api/cows', cowData)
-    .then(res => {
-      console.log('Success adding a new cow!');
-      console.log('this is the res.data:', res.data);
-    })
-    .then(() => this.getAll())
-    .catch(err=> console.log('ERR! Can not add a new cow! '))
+      .then(res => {
+        console.log('Success adding a new cow!');
+        console.log('this is the res.data:', res.data);
+      })
+      .then(() => this.getAll())
+      .catch(err => console.log('ERR! Can not add a new cow! '))
 
   };
 
@@ -64,10 +64,17 @@ class App extends React.Component {
     })
   };
 
+  clickUpdateBtn(event) {
+    var id = event.currentTarget.id;
+    this.setState({updatedCowId: id, updateWindowPop: true});
+
+
+  }
+
   updateCow(id, newName, newDes) { //id will always be the same only name and decription will be updated;
 
     let updatedData = {id: id, name: newName, decription: newDes};
-    axios.put(`api/cows/:id`, updatedData)
+    axios.patch(`api/cows/:${id}`, updatedData)
       .then(res => {
         console.log('Sucess update info:', res.data);
       })
@@ -103,10 +110,10 @@ class App extends React.Component {
 
       <AddCow handleAddition = {this.addNew.bind(this)}/>
 
-      <CowList cows = {this.state.allCows}  delete = {this.deleteCow.bind(this)}  clickAndToggle = {this.clickCowName.bind(this)}/>
+      <CowList cows = {this.state.allCows}  delete = {this.deleteCow.bind(this)}  clickAndToggle = {this.clickCowName.bind(this)}  clickUpdateBtn = {this.clickUpdateBtn.bind(this)} />
 
 
-      {this.state.updateWindowPop? <UpdateCow updateCow = {this.updateCow.bind(this)}
+      {this.state.updateWindowPop? <UpdateCow updatedCowId = {this.state.updatedCowId}  updateCow = {this.updateCow.bind(this)}
       /> : null}
 
       </div>

@@ -10,7 +10,7 @@ const CowItem = (props) => {
       {':   '}
 
         <span className="cow-name-span" onClick = {e => {props.clickPop(curCowName)}}>{props.cow.name} </span>
-        <button>update</button>
+        <button id = {curCowId} onClick = {e => props.clickUpdate(e)}>update</button>
         <button onClick = {e => {props.deleteCurCow(curCowId)}} >delete</button>
 
         {/* {":     "}
