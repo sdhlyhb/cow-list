@@ -40,8 +40,9 @@ import React from 'react';
    render(){
     return (
       <div >
-        <h3>Update cow info</h3>
+
         <form id="update-cow-form">
+        <h3>Update cow info</h3>
           <label>Current ID: {this.props.updatedCowId}</label>
           <br></br>
           <label>
@@ -59,6 +60,7 @@ import React from 'react';
           </label>
           <br></br>
           <button type="submit" onClick = {this.handleSubmit.bind(this)}>submit updates</button>
+          <span className="close-icon2" onClick = {e => {this.props.toggleUpdateWindowPop(e)}}>close</span>
 
 
 

@@ -46,23 +46,46 @@ span {
 
 
 .close-icon {
-  content: 'x';
+
   cursor: pointer;
-  position: fixed;
-  left: 45%;
-  top: 25%;
+  position:absolute;
+  left: 95%;
+  top: 10%;
   background: #ededed;
-  width: 25px;
-  height: 25px;
-  line-height: 20px;
   text-align: center;
-  border: 1px solid #999;
-  border-radius: 20px;
-  font-size: 20px;
+  border: 2px solid #999;
+  border-radius:5px;
+  padding: 3px 8px;
+
+  font-size: 1rem;
 }
 
 .close-icon:hover {
   color: red;
   background-color: yellow;
   cursor: pointer;
+}
+
+
+.close-icon2 {
+  cursor: pointer;
+  position: absolute;
+  left: 92%;
+  top: 5%;
+  background: #ededed;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 15px;
+  padding: 3px 6px;
+  font-size: 15px;
+}
+
+.close-icon2:hover {
+  color: red;
+  background-color: yellow;
+  cursor: pointer;
+}
+
+button {
+  font-family:Arial, Helvetica, sans-serif
 }
