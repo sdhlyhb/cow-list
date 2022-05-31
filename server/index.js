@@ -45,8 +45,8 @@ app.post('/api/cows', (req, res) => {
 
 
 
-app.patch(`/api/cows/:id`, (req, res) => {
-  console.log('this is the req.body for PATCH:', req.body, typeof(req.body));
+app.put(`/api/cows/:id`, (req, res) => {
+  console.log('this is the req.body for PUT:', req.body, typeof(req.body));
   var updatedCowData = req.body;
   updateOneCow(updatedCowData.description, updatedCowData.name, updatedCowData.id, (err, result) => {
     if(err) {
@@ -62,13 +62,13 @@ app.patch(`/api/cows/:id`, (req, res) => {
 });
 
 app.delete(`/api/cows/:id`, (req, res)=> {
-  console.log('this is req.params in DELETE:', req.params);
-  var id = Number(req.params.id[1]);
+  console.log('this is req.params in DELETE:', req.params.id.slice(1));
+  var id = Number(req.params.id.slice(1));
   deleteOneCow(id, (err, result) => {
     if(err) {
       console.log('Err delete the cow data!', err);
     } else {
-      console.log('Sucess deleted the cow data!');
+      console.log('Sucess deleted the cow data!', result);
       res.send(result);
     }
   })

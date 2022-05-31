@@ -6,24 +6,31 @@ import React from 'react';
    constructor(props) {
      super(props);
      this.state = {
-       updatedName: '',
-       updatedDescription: ''
+       updatedName: props.updatedCowData[0].name,
+       updatedDescription: props.updatedCowData[0].description
 
      }
    }
 
 
    updateCowName(e) {
-     this.setState({updatedName: e.currentTarget.value});
+     if(e.currentTarget.value.length > 0) {
+       this.setState({updatedName: e.currentTarget.value});
+     }
    }
 
    updateDescription(e) {
-     this.setState({updatedDescription: e.currentTarget.value});
+     if(e.currentTarget.value.length > 0) {
+       this.setState({updatedDescription: e.currentTarget.value});
+     }
+
    }
 
    handleSubmit(e) {
      e.preventDefault();
+     console.log(this.props.updatedCowData);
      this.props.updateCow(Number(this.props.updatedCowId), this.state.updatedName, this.state.updatedDescription);
+     this.props.toggleUpdateWindowPop();
 
 
 
@@ -40,7 +47,7 @@ import React from 'react';
           <label>
             Name:
 
-            <input type="text" name="name" placeholder="new name..." onChange = {(e) => {this.updateCowName(e)}}/>
+            <input type="text" name="name" placeholder="new name..." defaultValue = {this.props.updatedCowData.name} onChange = {(e) => {this.updateCowName(e)}}/>
           </label>
           <br></br>
 
@@ -52,7 +59,7 @@ import React from 'react';
           </label>
           <br></br>
           <button type="submit" onClick = {this.handleSubmit.bind(this)}>submit updates</button>
-          {/* <span className="close-icon" onClick = {e => {props.toggle(e)}}>X</span> */}
+
 
 
 

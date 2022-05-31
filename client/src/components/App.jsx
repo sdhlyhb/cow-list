@@ -13,6 +13,7 @@ class App extends React.Component {
       allCows : [],
       currentClickedCowData: null,
       updatedCowId: null,
+      updatedCowData: null,
       popUpSeen: false,
       updateWindowPop: false
 
@@ -23,8 +24,6 @@ class App extends React.Component {
 //display all the names
   componentDidMount() {
     this.getAll();
-
-
   }
 
   getAll() {
@@ -55,6 +54,11 @@ class App extends React.Component {
       {popUpSeen: !this.state.popUpSeen}
     )
   };
+  toggleUpdateWindowPop() {
+    this.setState(
+      {updateWindowPop: !this.state.updateWindowPop}
+    )
+  };
 
   clickCowName(clickedName) {
     let matched = this.state.allCows.filter(ele => ele.name === clickedName);
@@ -65,16 +69,17 @@ class App extends React.Component {
   };
 
   clickUpdateBtn(event) {
-    var id = event.currentTarget.id;
-    this.setState({updatedCowId: id, updateWindowPop: true});
+    var id = Number(event.currentTarget.id);
+    var updatedCowData = this.state.allCows.filter(ele => ele.id === id);
+    this.setState({updatedCowId: id, updatedCowData:updatedCowData, updateWindowPop: true});
 
 
   }
 
   updateCow(id, newName, newDes) { //id will always be the same only name and decription will be updated;
 
-    let updatedData = {id: id, name: newName, decription: newDes};
-    axios.patch(`api/cows/:${id}`, updatedData)
+    let updatedData = {id: id, name: newName, description: newDes};
+    axios.put(`api/cows/:${id}`, updatedData)
       .then(res => {
         console.log('Sucess update info:', res.data);
       })
@@ -113,7 +118,7 @@ class App extends React.Component {
       <CowList cows = {this.state.allCows}  delete = {this.deleteCow.bind(this)}  clickAndToggle = {this.clickCowName.bind(this)}  clickUpdateBtn = {this.clickUpdateBtn.bind(this)} />
 
 
-      {this.state.updateWindowPop? <UpdateCow updatedCowId = {this.state.updatedCowId}  updateCow = {this.updateCow.bind(this)}
+      {this.state.updateWindowPop? <UpdateCow updatedCowId = {this.state.updatedCowId} updatedCowData = {this.state.updatedCowData} updateCow = {this.updateCow.bind(this)} toggleUpdateWindowPop = {this.toggleUpdateWindowPop.bind(this)}
       /> : null}
 
       </div>
